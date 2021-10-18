@@ -1,16 +1,14 @@
-# sample2
+# テックフォードで使うサンプルアプリ
 
-A new Flutter project.
+授業中に作ったサンプルコードを上げていきます。
 
-## Getting Started
+## なぜつくるのか
 
-This project is a starting point for a Flutter application.
+- みんが復習できるようにするため
+- ぼくがやったことない実装を練習するため
 
-A few resources to get you started if this is your first Flutter project:
+## なにができるか
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Google サインイン
+- TODO 管理
+- チャットルームでのチャット
