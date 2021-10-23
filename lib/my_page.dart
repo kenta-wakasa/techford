@@ -22,8 +22,14 @@ class _MyPageState extends State<MyPage> {
   Future<void> fetchImageUrl() async {
     final snapshot =
         await FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).get();
-    imageUrl = snapshot['imageUrl'];
-    setState(() {});
+    final data = snapshot.data();
+    if (data == null) {
+      return;
+    }
+    imageUrl = data['imageUrl'];
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
