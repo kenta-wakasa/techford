@@ -35,10 +35,16 @@ class _AddRoomPageState extends State<AddRoomPage> {
                         {
                           'name': textEditingController.text,
                         },
+                        
+
                       );
-                      await FirebaseFirestore.instance.collection('users').doc(uid).set({
-                        'rooms': FieldValue.arrayUnion([reference])
-                      });
+                      await FirebaseFirestore.instance.collection('users').doc(uid).set(
+                        {
+                          'rooms': FieldValue.arrayUnion([reference])
+                        },
+                        SetOptions(merge: true),
+                      );
+                      Navigator.of(context).pop();
                     },
               child: const Text('作成'),
               style: ElevatedButton.styleFrom(
