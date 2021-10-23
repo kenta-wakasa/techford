@@ -16,7 +16,6 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final textEditingController = TextEditingController();
-  final scrollController = ScrollController();
   final uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
@@ -42,7 +41,6 @@ class _ChatPageState extends State<ChatPage> {
                 child: SingleChildScrollView(
                   reverse: true,
                   physics: const AlwaysScrollableScrollPhysics(),
-                  controller: scrollController,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: data.docs.map((e) {
@@ -100,7 +98,6 @@ class _ChatPageState extends State<ChatPage> {
           InputWidget(
             textEditingController: textEditingController,
             room: widget.room,
-            scrollController: scrollController,
           ),
         ],
       ),
@@ -113,10 +110,8 @@ class InputWidget extends StatefulWidget {
     Key? key,
     required this.textEditingController,
     required this.room,
-    required this.scrollController,
   }) : super(key: key);
   final TextEditingController textEditingController;
-  final ScrollController scrollController;
   final DocumentSnapshot<Map<String, dynamic>> room;
 
   @override
@@ -158,7 +153,7 @@ class _InputWidgetState extends State<InputWidget> {
                     // TODO(kenta-wakasa): チャット送信機能
                     await widget.room.reference.collection('chats').add(
                       {
-                        'createdAt': FieldValue.serverTimestamp(),
+                        'createdAt': FieldValue.serverTimestamp(), // サバーでの現在時刻を取得可能
                         'uid': uid,
                         'text': widget.textEditingController.text,
                       },
