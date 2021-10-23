@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sample2/login_page.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -87,6 +89,19 @@ class _MyPageState extends State<MyPage> {
               backgroundImage: FileImage(File(image!.path)),
               radius: 50,
             ),
+
+          ElevatedButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              await GoogleSignIn().signOut();
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                builder: (context) {
+                  return const LoginPage();
+                },
+              ), (route) => true);
+            },
+            child: const Text('ログアウト'),
+          ),
           // Image.file(
           //   File(image!.path),
           // ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample2/chat_page.dart';
+import 'package:sample2/room_list_page.dart';
 import 'package:sample2/todo_page.dart';
 
 class NavigatePage extends StatefulWidget {
@@ -14,7 +14,7 @@ class _NavigatePageState extends State<NavigatePage> {
   /// ボトムナビゲーションバーに割り当てる各ページ。
   final pages = [
     TodoPage(),
-    ChatPage(),
+    RoomListPage(),
   ];
 
   int currentIndex = 0;

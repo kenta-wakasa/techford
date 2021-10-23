@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sample2/chat_page.dart';
+import 'package:sample2/room_list_page.dart';
 import 'package:sample2/login_page.dart';
 import 'package:sample2/navigate_page.dart';
 import 'package:sample2/todo_page.dart';
@@ -62,7 +62,7 @@ class _StartPageState extends State<StartPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return const ChatPage();
+                    return const RoomListPage();
                   },
                 ),
               );
