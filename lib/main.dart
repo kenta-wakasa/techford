@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sample2/start_page.dart';
 
 // はじめに main 関数が実行されます
@@ -11,7 +10,7 @@ Future<void> main() async {
 
   // Firebase の初期化。await をつけることで終わるまで待てる。
   await Firebase.initializeApp();
-  await MobileAds.instance.initialize(); // 追加
+  // await MobileAds.instance.initialize(); // 追加
 
   // runApp のなかにかかれたWidgetがrootになります。
   runApp(MyApp());

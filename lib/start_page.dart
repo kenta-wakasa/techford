@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sample2/room_list_page.dart';
 import 'package:sample2/login_page.dart';
 import 'package:sample2/navigate_page.dart';
+import 'package:sample2/settings_page.dart';
 import 'package:sample2/todo_page.dart';
 
 class StartPage extends StatefulWidget {
@@ -21,78 +22,63 @@ class _StartPageState extends State<StartPage> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: double.infinity,
+        children: const [
+          SizedBox(width: double.infinity),
+          ElevatedButtonToPush(
+            label: 'TODOサンプル',
+            page: TodoPage(),
           ),
-          ElevatedButton(
-            onPressed: () async {
-              if (FirebaseAuth.instance.currentUser == null) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const LoginPage();
-                    },
-                  ),
-                );
-                return;
-              }
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const TodoPage();
-                  },
-                ),
-              );
-            },
-            child: const Text('TODOサンプル'),
+          ElevatedButtonToPush(
+            label: 'チャットサンプル',
+            page: RoomListPage(),
           ),
-          ElevatedButton(
-            onPressed: () async {
-              if (FirebaseAuth.instance.currentUser == null) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const LoginPage();
-                    },
-                  ),
-                );
-                return;
-              }
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const RoomListPage();
-                  },
-                ),
-              );
-            },
-            child: const Text('チャットサンプル'),
+          ElevatedButtonToPush(
+            label: 'ボトムナビゲーションバーサンプル',
+            page: NavigatePage(),
           ),
-          ElevatedButton(
-            onPressed: () async {
-              if (FirebaseAuth.instance.currentUser == null) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const LoginPage();
-                    },
-                  ),
-                );
-                return;
-              }
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const NavigatePage();
-                  },
-                ),
-              );
-            },
-            child: const Text('ボトムナビゲーションバーサンプル'),
+          ElevatedButtonToPush(
+            label: '設定機能サンプル',
+            page: SettingsPage(),
           ),
         ],
       ),
+    );
+  }
+}
+
+class ElevatedButtonToPush extends StatelessWidget {
+  const ElevatedButtonToPush({
+    Key? key,
+    required this.label,
+    required this.page,
+  }) : super(key: key);
+
+  final String label;
+  final Widget page;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () async {
+        if (FirebaseAuth.instance.currentUser == null) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return const LoginPage();
+              },
+            ),
+          );
+          return;
+        }
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return page;
+            },
+          ),
+        );
+      },
+      child: Text(label),
     );
   }
 }
