@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sample2/hive_sample.dart';
 import 'package:sample2/room_list_page.dart';
 import 'package:sample2/login_page.dart';
 import 'package:sample2/navigate_page.dart';
@@ -39,6 +40,10 @@ class _StartPageState extends State<StartPage> {
           ElevatedButtonToPush(
             label: '設定機能サンプル',
             page: SettingsPage(),
+          ),
+          ElevatedButtonToPush(
+            label: 'Hiveサンプル',
+            page: HiveSample(),
           ),
         ],
       ),

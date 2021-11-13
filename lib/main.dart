@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sample2/start_page.dart';
 
 // はじめに main 関数が実行されます
@@ -12,8 +13,11 @@ Future<void> main() async {
   await Firebase.initializeApp();
   // await MobileAds.instance.initialize(); // 追加
 
+  // Hiveの初期化処理
+  await Hive.initFlutter();
+
   // runApp のなかにかかれたWidgetがrootになります。
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
