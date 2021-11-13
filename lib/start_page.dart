@@ -4,6 +4,7 @@ import 'package:sample2/hive_sample.dart';
 import 'package:sample2/room_list_page.dart';
 import 'package:sample2/login_page.dart';
 import 'package:sample2/navigate_page.dart';
+import 'package:sample2/select_list_page.dart';
 import 'package:sample2/settings_page.dart';
 import 'package:sample2/todo_page.dart';
 
@@ -44,6 +45,10 @@ class _StartPageState extends State<StartPage> {
           ElevatedButtonToPush(
             label: 'Hiveサンプル',
             page: HiveSample(),
+          ),
+          ElevatedButtonToPush(
+            label: 'リストから複数選択する場合どうする？',
+            page: SelectListPage(),
           ),
         ],
       ),
