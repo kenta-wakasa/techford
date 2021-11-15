@@ -41,10 +41,21 @@ class _SelectListPageState extends State<SelectListPage> {
               }
               setState(() {});
             },
-            child: Container(
-              color: selectedList.contains(text) ? Colors.blue : null,
-              alignment: Alignment.center,
-              child: Text(text),
+            child: Stack(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(text),
+                ),
+                if (selectedList.contains(text))
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: EdgeInsets.all(4),
+                      child: Icon(Icons.check_circle),
+                    ),
+                  )
+              ],
             ),
           );
         },

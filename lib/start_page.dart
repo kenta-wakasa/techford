@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sample2/grid_in_card.dart';
 import 'package:sample2/hive_sample.dart';
 import 'package:sample2/room_list_page.dart';
 import 'package:sample2/login_page.dart';
@@ -55,6 +56,10 @@ class _StartPageState extends State<StartPage> {
             label: 'SharedPreferencesサンプル',
             page: SharedPreferencesSample(),
           ),
+          ElevatedButtonToPush(
+            label: 'Cardの中でGrid表示',
+            page: GridInCard(),
+          )
         ],
       ),
     );
