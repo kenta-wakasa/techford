@@ -6,6 +6,7 @@ import 'package:sample2/login_page.dart';
 import 'package:sample2/navigate_page.dart';
 import 'package:sample2/select_list_page.dart';
 import 'package:sample2/settings_page.dart';
+import 'package:sample2/shared_preferences_sample.dart';
 import 'package:sample2/todo_page.dart';
 
 class StartPage extends StatefulWidget {
@@ -50,6 +51,10 @@ class _StartPageState extends State<StartPage> {
             label: 'リストから複数選択する場合どうする？',
             page: SelectListPage(),
           ),
+          ElevatedButtonToPush(
+            label: 'SharedPreferencesサンプル',
+            page: SharedPreferencesSample(),
+          ),
         ],
       ),
     );
@@ -70,16 +75,16 @@ class ElevatedButtonToPush extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
-        if (FirebaseAuth.instance.currentUser == null) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return const LoginPage();
-              },
-            ),
-          );
-          return;
-        }
+        // if (FirebaseAuth.instance.currentUser == null) {
+        //   Navigator.of(context).push(
+        //     MaterialPageRoute(
+        //       builder: (context) {
+        //         return const LoginPage();
+        //       },
+        //     ),
+        //   );
+        //   return;
+        // }
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
