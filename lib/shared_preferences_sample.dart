@@ -57,83 +57,79 @@ class _SharedPreferencesSampleState extends State<SharedPreferencesSample> {
 
       /// prefがnullの間は、インジケーターまわるだけにする。
       /// nullじゃなくなったら、画面に入力項目を表示。
-      body: pref == null
-          ? const Center(
-              child: CupertinoActivityIndicator(),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(width: double.infinity),
-                  InkWell(
-                    onTap: () async {
-                      /// ダイアログがStringをpopしてそれをresultが受け取る
-                      final result = await showDialog<String>(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('名前を変更'),
-                          content: TextFormField(
-                            autofocus: true,
-                            onFieldSubmitted: (value) {
-                              Navigator.of(context).pop(value);
-                            },
-                          ),
-                        ),
-                      );
-
-                      /// ダイアログは何もpopしないかもしれないのでその場合は
-                      /// resultがnullになる。
-                      /// nullだとその後の処理をやらないようにしたいのでreturnする。
-                      if (result == null) {
-                        return;
-                      }
-                      await pref?.setString('name', result);
-                      if (mounted) {
-                        setState(() {});
-                      }
-                    },
-                    child: Text(
-                      '名前： $name',
-                      style: const TextStyle(fontSize: 24),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(width: double.infinity),
+            InkWell(
+              onTap: () async {
+                /// ダイアログがStringをpopしてそれをresultが受け取る
+                final result = await showDialog<String>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('名前を変更'),
+                    content: TextFormField(
+                      autofocus: true,
+                      onFieldSubmitted: (value) {
+                        Navigator.of(context).pop(value);
+                      },
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      final result = await showDialog<String>(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('学籍番号を変更'),
-                          content: TextFormField(
-                            // 数字だけを入力可能にする
-                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                            keyboardType: TextInputType.number,
-                            autofocus: true,
+                );
 
-                            /// 入力フィールドの完了ボタンを押すとこの関数が呼ばれる。
-                            /// その時点で入力されている文字列がvalueに入る。
-                            /// valueをpopして上で書いたresult変数に代入している。
-                            onFieldSubmitted: (value) {
-                              Navigator.of(context).pop(value);
-                            },
-                          ),
-                        ),
-                      );
-                      if (result == null) {
-                        return;
-                      }
-                      await pref?.setString('number', result);
-                      setState(() {});
-                    },
-                    child: Text(
-                      '学籍番号： $number',
-                      style: const TextStyle(fontSize: 24),
-                    ),
-                  ),
-                ],
+                /// ダイアログは何もpopしないかもしれないのでその場合は
+                /// resultがnullになる。
+                /// nullだとその後の処理をやらないようにしたいのでreturnする。
+                if (result == null) {
+                  return;
+                }
+                await pref?.setString('name', result);
+                if (mounted) {
+                  setState(() {});
+                }
+              },
+              child: Text(
+                '名前： $name',
+                style: const TextStyle(fontSize: 24),
               ),
             ),
+            InkWell(
+              onTap: () async {
+                final result = await showDialog<String>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('学籍番号を変更'),
+                    content: TextFormField(
+                      // 数字だけを入力可能にする
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
+                      autofocus: true,
+
+                      /// 入力フィールドの完了ボタンを押すとこの関数が呼ばれる。
+                      /// その時点で入力されている文字列がvalueに入る。
+                      /// valueをpopして上で書いたresult変数に代入している。
+                      onFieldSubmitted: (value) {
+                        Navigator.of(context).pop(value);
+                      },
+                    ),
+                  ),
+                );
+                if (result == null) {
+                  return;
+                }
+                await pref?.setString('number', result);
+                setState(() {});
+              },
+              child: Text(
+                '学籍番号： $number',
+                style: const TextStyle(fontSize: 24),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
