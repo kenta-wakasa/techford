@@ -14,16 +14,19 @@ class _SharedPreferencesSampleState extends State<SharedPreferencesSample> {
   /// インスタンスが生成されるまではnullになっていることに注意
   SharedPreferences? pref;
 
-  @override
-  Future<void> initState() async {
-    super.initState();
-
+  Future<void> init() async {
     /// SharedPreferencesを使うにはまずインスタンスを作る必要がある。
     /// Future型で返ってくるので、awaitとすることを忘れないようにしよう。
     pref = await SharedPreferences.getInstance();
     if (mounted) {
       setState(() {});
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    init();
   }
 
   /// 変数名の前に get とつけると、関数のあとの()を省略できる
