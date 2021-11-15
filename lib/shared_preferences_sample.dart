@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,9 +53,6 @@ class _SharedPreferencesSampleState extends State<SharedPreferencesSample> {
       appBar: AppBar(
         title: const Text('SharedPreferences'),
       ),
-
-      /// prefがnullの間は、インジケーターまわるだけにする。
-      /// nullじゃなくなったら、画面に入力項目を表示。
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
