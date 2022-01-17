@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sample2/create_user_page.dart';
 import 'package:sample2/grid_in_card.dart';
 import 'package:sample2/hive_sample.dart';
-import 'package:sample2/room_list_page.dart';
 import 'package:sample2/login_page.dart';
 import 'package:sample2/navigate_page.dart';
+import 'package:sample2/room_list_page.dart';
 import 'package:sample2/select_list_page.dart';
 import 'package:sample2/settings_page.dart';
-import 'package:sample2/shared_preferences_sample.dart';
+import 'package:sample2/todo_list_page.dart';
 import 'package:sample2/todo_page.dart';
 
 class StartPage extends StatefulWidget {
@@ -24,43 +25,53 @@ class _StartPageState extends State<StartPage> {
       appBar: AppBar(
         title: const Text('サンプルアプリ'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          SizedBox(width: double.infinity),
-          ElevatedButtonToPush(
-            label: 'TODOサンプル',
-            page: TodoPage(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              SizedBox(width: double.infinity),
+              ElevatedButtonToPush(
+                label: 'TODOサンプル',
+                page: TodoPage(),
+              ),
+              ElevatedButtonToPush(
+                label: 'チャットサンプル',
+                page: RoomListPage(),
+              ),
+              ElevatedButtonToPush(
+                label: 'ボトムナビゲーションバーサンプル',
+                page: NavigatePage(),
+              ),
+              ElevatedButtonToPush(
+                label: '設定機能サンプル',
+                page: SettingsPage(),
+              ),
+              ElevatedButtonToPush(
+                label: 'Hiveサンプル',
+                page: HiveSample(),
+              ),
+              ElevatedButtonToPush(
+                label: 'リストから複数選択する場合どうする？',
+                page: SelectListPage(),
+              ),
+              ElevatedButtonToPush(
+                label: 'Cardの中でGrid表示',
+                page: GridInCard(),
+              ),
+              ElevatedButtonToPush(
+                label: '新規ユーザー登録',
+                page: CreateUserPage(),
+              ),
+              ElevatedButtonToPush(
+                label: 'TODOリストでクラスの説明',
+                page: TodoListPage(),
+              ),
+            ],
           ),
-          ElevatedButtonToPush(
-            label: 'チャットサンプル',
-            page: RoomListPage(),
-          ),
-          ElevatedButtonToPush(
-            label: 'ボトムナビゲーションバーサンプル',
-            page: NavigatePage(),
-          ),
-          ElevatedButtonToPush(
-            label: '設定機能サンプル',
-            page: SettingsPage(),
-          ),
-          ElevatedButtonToPush(
-            label: 'Hiveサンプル',
-            page: HiveSample(),
-          ),
-          ElevatedButtonToPush(
-            label: 'リストから複数選択する場合どうする？',
-            page: SelectListPage(),
-          ),
-          ElevatedButtonToPush(
-            label: 'SharedPreferencesサンプル',
-            page: SharedPreferencesSample(),
-          ),
-          ElevatedButtonToPush(
-            label: 'Cardの中でGrid表示',
-            page: GridInCard(),
-          )
-        ],
+        ),
       ),
     );
   }
@@ -80,16 +91,16 @@ class ElevatedButtonToPush extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
-        // if (FirebaseAuth.instance.currentUser == null) {
-        //   Navigator.of(context).push(
-        //     MaterialPageRoute(
-        //       builder: (context) {
-        //         return const LoginPage();
-        //       },
-        //     ),
-        //   );
-        //   return;
-        // }
+        if (FirebaseAuth.instance.currentUser == null) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return const LoginPage();
+              },
+            ),
+          );
+          return;
+        }
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
